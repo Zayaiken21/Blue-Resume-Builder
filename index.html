@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blue Resume Builder</title>
+<title>Sco Blue Resume Builder</title>
 <meta name="description" content="Fill in your details and download a polished resume as PDF or Microsoft Word — free, private, runs in your browser.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2338bdf8'/%3E%3Cstop offset='1' stop-color='%231d4ed8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Crect x='18' y='14' width='28' height='36' rx='4' fill='white'/%3E%3Crect x='23' y='21' width='18' height='3' rx='1.5' fill='%231d4ed8'/%3E%3Crect x='23' y='28' width='18' height='2' rx='1' fill='%2393c5fd'/%3E%3Crect x='23' y='33' width='14' height='2' rx='1' fill='%2393c5fd'/%3E%3Crect x='23' y='38' width='16' height='2' rx='1' fill='%2393c5fd'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -206,7 +206,7 @@ h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing:-.
 <header class="top">
   <div class="brand">
     <div class="logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
-    <div><h1><span>Blue</span> Resume Builder</h1><small>Fill it in. We format it. Download PDF or Word.</small></div>
+    <div><h1>Sco <span>Blue</span> Resume Builder</h1><small>Fill it in. We format it. Download PDF or Word.</small></div>
   </div>
   <div class="spacer"></div>
   <div class="tools">
@@ -520,7 +520,7 @@ function buildPDF(){
   const ce = s.certifications.filter(x=>x.name);
   if(ce.length){ heading('Certifications'); ce.forEach((x,i)=>{ if(i) y += 4; row(x.name + (x.issuer?' — '+x.issuer:''), x.date||''); }); }
 
-  doc.setProperties({title:(p.name||'')+' Resume', creator:'Blue Resume Builder'});
+  doc.setProperties({title:(p.name||'')+' Resume', creator:'Sco Blue Resume Builder'});
   return doc;
 }
 
@@ -575,7 +575,7 @@ function buildDOCX(){
   if(ce.length){ heading('Certifications'); ce.forEach((x,i)=>row(x.name + (x.issuer?' — '+x.issuer:''), x.date||'', i>0)); }
 
   return new D.Document({
-    creator:'Blue Resume Builder', title:(p.name||'')+' Resume',
+    creator:'Sco Blue Resume Builder', title:(p.name||'')+' Resume',
     styles:{default:{document:{run:{font:FONT, size:21, color:INK}}}},
     numbering:{config:[{reference:'blue-bullets', levels:[{level:0, format:D.LevelFormat.BULLET, text:'•', alignment:D.AlignmentType.LEFT,
       style:{paragraph:{indent:{left:300, hanging:220}}, run:{color:acc, font:FONT}}}]}]},
@@ -606,7 +606,7 @@ $('#importBtn').onclick = () => $('#fileIn').click();
 $('#fileIn').onchange = async e => {
   const f = e.target.files[0]; if(!f) return;
   try{ const d = JSON.parse(await f.text()); if(!d.personal) throw 0; state = Object.assign(blank(), d); rerenderAll(); toast('Resume loaded ✓'); }
-  catch(_){ toast('That file isn’t a Blue Resume Builder save'); }
+  catch(_){ toast('That file isn’t a Sco Blue Resume Builder save'); }
   e.target.value = '';
 };
 $('#sampleBtn').onclick = () => { if(hasData() && !confirm('Replace what you’ve entered with the sample resume?')) return; state = JSON.parse(JSON.stringify(SAMPLE)); rerenderAll(); toast('Sample loaded — edit anything'); };
