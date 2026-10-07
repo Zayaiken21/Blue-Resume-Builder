@@ -52,7 +52,8 @@ h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing
 .brand h1{font-size:19px;font-weight:700;white-space:nowrap}
 .brand h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .brand small{display:block;color:var(--muted);font-size:12px;margin-top:-1px}
-.top .spacer{flex:1}
+.top .spacer{display:none}
+.top .tour-btn{margin-left:auto}
 
 /* action dock (sample / import / export / reset) */
 .actions{display:flex;gap:4px;padding:5px;border-radius:16px;background:linear-gradient(180deg,rgba(30,64,175,.28),rgba(8,20,50,.5));
@@ -101,7 +102,7 @@ h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing
 
 /* section nav — wraps so every section is visible */
 .nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px;border-bottom:1px solid var(--line)}
-.nav a{flex:none;text-decoration:none;color:var(--muted);font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);transition:.15s;display:inline-flex;align-items:center;gap:6px}
+.nav a{flex:none;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none;color:var(--muted);font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);transition:.15s;display:inline-flex;align-items:center;gap:6px}
 .nav a:hover{color:var(--text);background:rgba(59,130,246,.12);border-color:var(--line-strong)}
 .nav a.on{color:#fff;background:rgba(59,130,246,.24);border-color:rgba(147,197,253,.45)}
 .nav a.off{opacity:.5;text-decoration:line-through}
@@ -143,11 +144,12 @@ h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing
 .add{width:100%;justify-content:center;border-style:dashed;background:transparent;color:var(--ice)}
 .empty-note{font-size:13px;color:var(--faint);margin:0 0 12px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.chip{font-size:12.5px;padding:4px 10px;border-radius:999px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.3);color:var(--ice)}
+.chip{max-width:100%;overflow-wrap:anywhere;font-size:12.5px;padding:4px 10px;border-radius:999px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.3);color:var(--ice)}
 
 /* section manager */
 .lfixed,.lrow{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;border:1px solid var(--line);background:rgba(3,10,30,.4)}
 .lfixed{color:var(--muted);font-size:13.5px;margin-bottom:8px;border-style:dashed}
+.lfixed svg{width:16px;height:16px;flex:none;margin:0 6px 0 4px;color:var(--faint)}
 .lfixed em{margin-left:auto;font-style:normal;font-size:11.5px;color:var(--faint)}
 .lrows{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:8px}
 .lrow{cursor:grab;transition:background .15s,border-color .15s,opacity .15s;user-select:none;-webkit-user-select:none}
@@ -215,6 +217,9 @@ h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing
   box-shadow:0 30px 80px -20px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.06),0 0 60px rgba(56,189,248,.12);
   font-family:Helvetica,Arial,sans-serif;font-size:13.3px;line-height:1.4;padding:64px;overflow:hidden}
 .paper.serif{font-family:Georgia,"Times New Roman",Times,serif}
+.paper,.paper *{overflow-wrap:anywhere}
+.paper .r-row > span:first-child{min-width:0;flex:1 1 auto}
+.paper .r-row > span:first-child{flex-basis:0}
 .paper .r-head{text-align:center;margin-bottom:6px}
 .paper .r-name{font-size:32px;font-weight:700;color:var(--acc);letter-spacing:-.01em;line-height:1.1}
 .paper .r-title{font-size:16px;color:#4b5563;margin-top:6px}
@@ -224,7 +229,7 @@ h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing
 .paper .r-item{margin-bottom:10px}
 .paper .r-row{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
 .paper .r-row b{font-size:14.6px}
-.paper .r-date{font-size:12.6px;color:#4b5563;white-space:nowrap}
+.paper .r-date{font-size:12.6px;color:#4b5563;flex:0 0 auto;max-width:48%;text-align:right;white-space:normal}
 .paper .r-sub{color:#4b5563;font-style:italic}
 .paper p{margin:0}
 .paper ul{margin:4px 0 0;padding:0;list-style:none}
@@ -245,6 +250,61 @@ h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing
   box-shadow:0 12px 40px rgba(0,0,0,.5),0 0 30px rgba(56,189,248,.2);transition:.25s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .tabs{display:none}
+.lfixed span{flex:1;min-width:0}.lfixed em{white-space:nowrap}
+
+/* polish */
+.top::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(56,189,248,.55),rgba(59,130,246,.55),transparent)}
+.card:hover{border-color:rgba(125,170,255,.24)}
+.card-head .ic{box-shadow:0 0 18px rgba(56,189,248,.12)}
+.tour-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(125,211,252,.45);background:rgba(56,189,248,.12);color:#e0f2fe;
+  padding:9px 14px;border-radius:12px;font-weight:600;font-size:13.5px;cursor:pointer;transition:.18s;white-space:nowrap}
+.tour-btn:hover{background:rgba(56,189,248,.24);box-shadow:0 0 0 4px rgba(56,189,248,.12)}
+.tour-btn svg{width:17px;height:17px}
+
+/* ---------- Guided tour ---------- */
+.tour{position:fixed;inset:0;z-index:200}
+.tour[hidden]{display:none}
+.t-spot{position:fixed;border-radius:16px;pointer-events:none;transition:left .3s cubic-bezier(.2,.8,.2,1),top .3s cubic-bezier(.2,.8,.2,1),width .3s cubic-bezier(.2,.8,.2,1),height .3s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 0 0 9999px rgba(2,6,18,.76),0 0 0 3px #38bdf8,0 0 34px 8px rgba(56,189,248,.55)}
+.t-spot::after{content:"";position:absolute;inset:-3px;border-radius:inherit;border:3px solid #7dd3fc;animation:ring 1.6s ease-out infinite}
+.t-spot.center{left:50%!important;top:50%!important;width:0!important;height:0!important;box-shadow:0 0 0 9999px rgba(2,6,18,.82)}
+.t-spot.center::after{display:none}
+@keyframes ring{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(1.08)}}
+.t-arrow{position:fixed;width:66px;height:66px;pointer-events:none;filter:drop-shadow(0 0 14px rgba(56,189,248,.9)) drop-shadow(0 6px 10px rgba(0,0,0,.5));z-index:2}
+.t-arrow[hidden]{display:none}
+.t-arrow svg{width:100%;height:100%;display:block;transform:rotate(var(--rot,0deg));animation:bob .9s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:rotate(var(--rot,0deg)) translateY(0)}50%{transform:rotate(var(--rot,0deg)) translateY(-12px)}}
+.t-card{position:fixed;width:min(390px,calc(100vw - 24px));z-index:3;color:#fff;
+  background:linear-gradient(180deg,#14347a 0%,#0b1d48 100%);border:1.5px solid rgba(125,211,252,.55);border-radius:22px;padding:20px 20px 18px;
+  box-shadow:0 30px 80px rgba(0,0,0,.65),0 0 0 6px rgba(56,189,248,.10),0 0 50px rgba(56,189,248,.25);animation:tIn .28s cubic-bezier(.2,.8,.2,1)}
+.t-card.center{width:min(460px,calc(100vw - 24px));text-align:center;padding:28px 24px 22px}
+@keyframes tIn{from{opacity:0;transform:translateY(10px) scale(.98)}}
+.t-top{display:flex;align-items:center;gap:12px}
+.t-card.center .t-top{justify-content:center}
+.t-num{width:44px;height:44px;border-radius:14px;background:var(--grad);display:grid;place-items:center;flex:none;
+  font:800 20px/1 "Space Grotesk",Inter,sans-serif;box-shadow:0 8px 20px -6px rgba(37,99,235,.9),inset 0 1px 0 rgba(255,255,255,.35)}
+.t-count{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7dd3fc}
+.t-count small{display:block;font-size:11.5px;letter-spacing:.04em;text-transform:none;color:#9fb6e0;font-weight:600}
+.t-title{font:800 22px/1.25 "Space Grotesk",Inter,sans-serif;margin:14px 0 8px;letter-spacing:-.01em;color:#fff}
+.t-card.center .t-title{font-size:26px}
+.t-body{font-size:15.5px;line-height:1.6;color:#dbe7ff;margin:0}
+.t-body b{color:#fff;font-weight:800}
+.t-body .k{color:#7dd3fc;font-weight:800;white-space:nowrap}
+.t-prog{height:6px;border-radius:6px;background:rgba(125,170,255,.2);margin:18px 0 16px;overflow:hidden}
+.t-prog i{display:block;height:100%;width:0;background:var(--grad);border-radius:6px;transition:width .35s}
+.t-btns{display:flex;align-items:center;gap:8px}
+.t-skip{margin-right:auto;background:none;border:0;color:#a9bde6;font-weight:700;font-size:14px;cursor:pointer;padding:10px 4px;text-decoration:underline;text-underline-offset:3px}
+.t-skip:hover{color:#fff}
+.t-back,.t-next{border-radius:12px;padding:11px 16px;font-weight:800;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px}
+.t-back{background:rgba(3,10,30,.45);border:1.5px solid rgba(125,170,255,.4);color:#fff}
+.t-back:hover{border-color:#7dd3fc}
+.t-back[disabled]{opacity:.35;pointer-events:none}
+.t-next{background:var(--grad);border:0;color:#fff;box-shadow:0 10px 26px -8px rgba(37,99,235,.95),inset 0 1px 0 rgba(255,255,255,.35)}
+.t-next:hover{filter:brightness(1.1)}
+.t-back svg,.t-next svg{width:17px;height:17px}
+.t-logo{width:64px;height:64px;border-radius:18px;margin:0 auto 4px;background:var(--grad);display:grid;place-items:center;box-shadow:0 0 40px rgba(56,189,248,.55)}
+.t-keys{margin-top:12px;font-size:12px;color:#8aa3d1}
+.t-keys kbd{font:600 11px Inter,sans-serif;border:1px solid rgba(125,170,255,.4);border-radius:5px;padding:1px 5px;color:#dbe7ff}
 
 /* ---------- Tablet & phone ---------- */
 @media (max-width:1180px) and (min-width:981px){
@@ -284,7 +344,9 @@ h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing
   .stage{padding:14px;overflow-x:auto;justify-content:flex-start}
   .stage.zoomed .paper-wrap{max-width:none;flex:none}
   .zoom-btn{display:inline-flex;align-self:flex-end;margin-left:auto}
-  .lrow{cursor:default}
+  .lrow{cursor:default;flex-wrap:wrap;row-gap:8px}
+  .lname{flex:1 1 0;min-width:120px;white-space:normal;overflow-wrap:anywhere;line-height:1.3}
+  .lbtns{margin-left:auto}
   .grip{display:none}
   .sheet-bg{place-items:end center;padding:0}
   .sheet{border-radius:22px 22px 0 0;max-height:90vh;padding:18px 16px calc(20px + env(safe-area-inset-bottom))}
@@ -296,6 +358,15 @@ h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing
   .tabs button svg{width:17px;height:17px}
   .tabs button.on{background:var(--grad);color:#fff}
   .toast{bottom:calc(84px + env(safe-area-inset-bottom));max-width:calc(100% - 32px);text-align:center}
+  .brand{flex:1}
+  .tour-btn{padding:9px 12px}
+  .t-card{left:12px!important;right:12px;width:auto;padding:16px 16px 14px;border-radius:20px}
+  .t-card.center{left:12px!important;right:12px;width:auto}
+  .t-title{font-size:20px;margin:10px 0 6px}
+  .t-body{font-size:15px}
+  .t-prog{margin:14px 0 12px}
+  .t-keys{display:none}
+  .t-arrow{width:56px;height:56px}
 }
 @media (max-width:520px){
   .f.half{grid-column:span 4}.f.quarter{grid-column:span 2}
@@ -318,6 +389,7 @@ h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing
     <div class="logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>
     <div><h1>Sco <span>Blue</span> Resume Builder</h1><small>Fill it in. We format it. Download PDF or Word.</small></div>
   </div>
+  <button class="tour-btn" id="tourBtn" title="Take the guided tour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></svg>Tour</button>
   <div class="spacer"></div>
   <nav class="actions" aria-label="Resume file actions">
     <button class="act a1" id="sampleBtn" title="Fill with an example resume"><span class="bdg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8L20 10l-6.1 1.2L12 17l-1.9-5.8L4 10l6.1-1.2z"/><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z"/></svg></span><span class="lbl">Sample</span><small>Example</small></button>
@@ -378,6 +450,13 @@ h1,h2,h3,h4{font-family:"Space Grotesk",Inter,sans-serif;margin:0;letter-spacing
   </div>
 </div>
 <div class="toast" id="toast" role="status"></div>
+
+<div class="tour" id="tour" hidden aria-live="polite">
+  <div class="t-spot" id="tSpot"></div>
+  <div class="t-arrow" id="tArrow" hidden><svg viewBox="0 0 64 64"><defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0f2fe"/><stop offset=".45" stop-color="#38bdf8"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+    <path d="M32 4 L58 32 H42 V60 H22 V32 H6 Z" fill="url(#ag)" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+  <div class="t-card" id="tCard" role="dialog" aria-modal="true" aria-labelledby="tTitle"></div>
+</div>
 
 <script>
 /* ================= Config ================= */
@@ -526,7 +605,7 @@ const staticHead = (icon,title,sub) => `<div class="card-head"><div class="ic">$
 function renderEditor(){
   let h = `<section class="card" id="sec-personal">${staticHead('user','Contact','How employers reach you — shown at the top of your resume.')}<div class="grid">
     ${field('personal.name','Full name','half','Jordan Ellis')}
-    ${field('personal.title','Professional title','half','Senior Product Designer')}
+    ${field('personal.title','Professional title (optional)','half','Senior Product Designer')}
     ${field('personal.email','Email','half','you@email.com','email')}
     ${field('personal.phone','Phone','half','(404) 555-0182','tel')}
     ${field('personal.location','City, State','half','Atlanta, GA')}
@@ -814,6 +893,8 @@ function buildPDF(){
     else { set(10.5,'bold',A); doc.text(title.toUpperCase(), M, y, {baseline:'top'}); doc.setDrawColor(...A); doc.setLineWidth(0.9); doc.line(M, y+14.5, W-M, y+14.5); y += 21; }
     doc.setCharSpace(0); };
   const row = (left, right) => { need(16); set(9.5,'normal',MUTED); const rw = right ? doc.getTextWidth(right) : 0;
+    if(right && rw > CW*0.42){ // very long right-side text (e.g. a long link) gets its own line instead of crushing the title
+      para(left, M, CW, 11, 'bold', INK, 1.3); para(right, M, CW, 9.5, 'normal', MUTED, 1.3); return; }
     if(right) doc.text(right, W-M, y+1.2, {baseline:'top', align:'right'}); para(left, M, CW - rw - 14, 11, 'bold', INK, 1.3); };
   const bullet = text => { set(10,'normal',INK);
     doc.splitTextToSize(text, CW-14).forEach((ln,i) => { need(13.4);
@@ -931,13 +1012,179 @@ $('#resetBtn').onclick = () => { if(!confirm('Clear everything and start fresh?'
 function hasData(){ const p = state.personal; return !!(p.name||p.email||state.summary||state.experience.length||state.education.length||Object.keys(state.custom).length); }
 function seed(){ if(!state.experience.length) state.experience.push({...DEFS.experience.blank}); if(!state.education.length) state.education.push({...DEFS.education.blank}); }
 
-$('#tabs').addEventListener('click', e => { const b = e.target.closest('button'); if(!b) return;
-  $('#app').dataset.view = b.dataset.view; document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on', x===b));
-  window.scrollTo({top:0}); if(b.dataset.view==='preview') requestAnimationFrame(fit); });
+function setView(v, keepScroll){
+  if($('#app').dataset.view === v) return;
+  $('#app').dataset.view = v; document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on', x.dataset.view===v));
+  if(!keepScroll) window.scrollTo({top:0}); if(v==='preview') requestAnimationFrame(fit);
+}
+$('#tabs').addEventListener('click', e => { const b = e.target.closest('button'); if(b) setView(b.dataset.view); });
+
+/* ================= Guided tour ================= */
+const TOUR_KEY = 'scoBlueTour.v1';
+const isPhone = () => matchMedia('(max-width:980px)').matches;
+const ICON_NEXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const ICON_BACK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+const TOUR = [
+  {center:true, title:'Welcome to Sco Blue Resume Builder',
+   body:'Build a <b>professional resume</b> in minutes and download it as a <span class="k">PDF</span> or <span class="k">Word</span> file. This quick tour shows you <b>every part of the site</b>, step by step. Use <b>Next</b> and <b>Back</b> to move around, or <b>Skip</b> any time.'},
+  {sel:['#sampleBtn'], title:'Try a sample resume',
+   body:'Not sure where to start? Tap <b>Sample</b> to fill everything in with an <b>example resume</b> you can edit. You’ll always be asked before anything you typed is replaced.'},
+  {sel:['#importBtn, #exportBtn'], all:true, title:'Save & reopen your work',
+   body:'<b>Export</b> saves your resume as a file you can keep. <b>Import</b> opens that file again later — even on another device. Your work also <b>saves automatically</b> in this browser.'},
+  {sel:['#resetBtn'], title:'Start over any time',
+   body:'<b>Reset</b> clears every field so you can start fresh. Don’t worry — it <b>always asks first</b>.'},
+  {sel:['#editorPane .pane-head'], view:'edit', title:'Resume strength',
+   body:'This ring fills up as you complete the <b>most important parts</b> of a strong resume. Aim for <span class="k">100%</span>.'},
+  {sel:['#nav'], view:'edit', title:'Jump to any section',
+   body:'These tabs take you <b>straight to each section</b> of the form. Tap <span class="k">+ Add section</span> at the end to add more.', phoneAppend:true, phone:'Swipe the tabs <b>sideways</b> to see them all.'},
+  {sel:['#sec-personal'], phoneSel:['#sec-personal .grid .f:nth-child(-n+2)'], all:true, view:'edit', title:'Your contact details',
+   body:'Start with your <b>full name</b> — it’s the only required field. Your <b>professional title</b>, website and LinkedIn are <b>optional</b>.'},
+  {sel:['#lrows','#sec-layout'], view:'edit', title:'Choose your section order',
+   body:'This list is the <b>order your resume prints in</b>. <b>Drag</b> a row to move it, or use the <b>up and down arrows</b>. Tap the <b>eye</b> to hide a section without deleting it.', phone:'Use the <b>up and down arrows</b> to move a section, and tap the <b>eye</b> to hide one without deleting it.'},
+  {sel:['#sec-layout .btn.add'], view:'edit', title:'Add your own sections',
+   body:'Add <b>ready-made sections</b> like Volunteer, Awards or Languages — or create a <b>custom section</b> with any name you want.'},
+  {sel:['.title-in'], view:'edit', title:'Rename any heading',
+   body:'Tap a section’s <b>heading</b> to rename it. For example, change “Experience” to <b>“Work History”</b>. Your new name shows on the resume.'},
+  {sel:['#sec-experience .item','#sec-experience'], phoneSel:['#sec-experience .item-head','#sec-experience .card-head'], view:'edit', title:'Add your work experience',
+   body:'Fill in each job. Type <b>one achievement per line</b> — every line becomes a <b>bullet point</b>. Use the arrows to reorder jobs, the trash can to remove one, and <span class="k">+ Add position</span> for more.'},
+  {sel:['#sec-skills'], view:'edit', title:'List your skills',
+   body:'Type your skills separated by <b>commas</b>. Each one appears as a tag below so you can check them at a glance.'},
+  {sel:['#tabs'], phoneOnly:true, title:'Switch between Edit and Preview',
+   body:'Tap <b>Edit</b> to fill in your details, and <b>Preview</b> to see your finished resume and download it.'},
+  {sel:['#paperWrap'], view:'preview', title:'Live preview',
+   body:'Your resume <b>updates instantly</b> as you type, so you see <b>exactly</b> how it will look when you download it.', phone:'Your resume <b>updates instantly</b> as you type. Tap <span class="k">Zoom</span> to read it up close.'},
+  {sel:['.pv-tools .ctl'], all:true, view:'preview', title:'Design your look',
+   body:'Choose a <b>Template</b> (Classic or Modern), a <b>Font</b> (Sans or Serif) and a professional <b>Color</b>. The preview changes right away.'},
+  {sel:['.dl'], view:'preview', title:'Download your resume',
+   body:'Tap <span class="k">Download PDF</span> to apply for jobs, or <b>Word</b> if you want to edit the file in Microsoft Word.'},
+  {sel:['#tourBtn'], view:'edit', title:'You’re all set!',
+   body:'That’s everything. You can replay this tour any time with the <b>Tour</b> button up here. <b>Good luck with your job search!</b>'}
+];
+let tSteps = [], tI = 0, tRaf = 0, tOn = false;
+
+function tVisible(el){ if(!el) return false; const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== 'hidden'; }
+function tTargets(step){
+  if(!step.sel) return [];
+  for(const s of ((isPhone() && step.phoneSel) || step.sel)){
+    const els = [...document.querySelectorAll(s)].filter(tVisible);
+    if(els.length) return step.all ? els : [els[0]];
+  }
+  return [];
+}
+function tRect(els){
+  const rs = els.map(e=>e.getBoundingClientRect());
+  const l = Math.min(...rs.map(r=>r.left)), t = Math.min(...rs.map(r=>r.top)), r = Math.max(...rs.map(r=>r.right)), b = Math.max(...rs.map(r=>r.bottom));
+  return {left:l, top:t, right:r, bottom:b, width:r-l, height:b-t};
+}
+function startTour(){
+  closeSheet(); closeColors();
+  tSteps = TOUR.filter(s => !(s.phoneOnly && !isPhone()));
+  tI = 0; tOn = true; $('#tour').hidden = false; document.body.style.overflow = 'hidden';
+  try{ localStorage.setItem(TOUR_KEY,'1'); }catch(_){}
+  showStep();
+  cancelAnimationFrame(tRaf); const loop = () => { if(!tOn) return; placeTour(); tRaf = requestAnimationFrame(loop); }; loop();
+}
+function endTour(done){
+  tOn = false; cancelAnimationFrame(tRaf); $('#tour').hidden = true; document.body.style.overflow = '';
+  if(isPhone()) setView('edit'); window.scrollTo({top:0}); $('#editorScroll').scrollTop = 0;
+  toast(done ? 'Tour complete — you’re ready to build ✓' : 'Tour skipped — tap “Tour” any time to replay it');
+}
+function showStep(){
+  const s = tSteps[tI], n = tI + 1, total = tSteps.length, last = n === total;
+  if(isPhone() && s.view) setView(s.view, true);
+  const body = (isPhone() && s.phone) ? (s.phoneAppend ? s.body + ' ' + s.phone : s.phone) : s.body;
+  const card = $('#tCard');
+  card.className = 't-card' + (s.center ? ' center' : '');
+  card.innerHTML = `
+    ${s.center ? `<div class="t-logo"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></div>` : ''}
+    <div class="t-top">${s.center ? `<div class="t-count">Guided tour<small>${total - 1} quick steps · about 1 minute</small></div>`
+      : `<div class="t-num">${n - 1}</div><div class="t-count">Step ${n - 1} of ${total - 1}<small>${esc(s.title)}</small></div>`}</div>
+    <h3 class="t-title" id="tTitle">${s.title}</h3>
+    <p class="t-body">${body}</p>
+    <div class="t-prog"><i style="width:${Math.round((n-1)/(total-1)*100)}%"></i></div>
+    <div class="t-btns">
+      <button class="t-skip" data-t="skip">${s.center ? 'Skip tour' : last ? '' : 'Skip tour'}</button>
+      ${s.center ? '' : `<button class="t-back" data-t="back">${ICON_BACK}Back</button>`}
+      <button class="t-next" data-t="next">${s.center ? 'Start tour' : last ? 'Finish' : 'Next'}${last ? '' : ICON_NEXT}</button>
+    </div>
+    ${s.center ? '<div class="t-keys">Tip: use <kbd>←</kbd> <kbd>→</kbd> to move, <kbd>Esc</kbd> to skip</div>' : ''}`;
+  if(last) card.querySelector('.t-skip').style.visibility = 'hidden';
+  card.style.animation = 'none'; card.offsetHeight; card.style.animation = '';
+  // bring the target into view
+  const els = tTargets(s);
+  if(els.length){
+    const el = els[0];
+    if(isPhone()){
+      const fixed = getComputedStyle(el).position === 'fixed' || el.closest('#tabs');
+      if(!fixed){ const r = tRect(els); const ch = card.offsetHeight + 24; const avail = innerHeight - ch;
+        const want = r.height < avail - 120 ? Math.max(70, (avail - r.height)/2 - 20) : 70;
+        window.scrollTo({top: Math.max(0, scrollY + r.top - want), behavior:'smooth'}); }
+    } else {
+      el.scrollIntoView({behavior:'smooth', block: el.offsetHeight > innerHeight*0.6 ? 'start' : 'center'});
+    }
+  } else if(isPhone()) window.scrollTo({top:0, behavior:'smooth'});
+  setTimeout(()=>card.querySelector('.t-next')?.focus({preventScroll:true}), 50);
+}
+function placeTour(){
+  const s = tSteps[tI], spot = $('#tSpot'), arrow = $('#tArrow'), card = $('#tCard');
+  const vw = innerWidth, vh = innerHeight, cw = card.offsetWidth, ch = card.offsetHeight, PAD = 8, GAP = 78, AS = isPhone() ? 56 : 66;
+  const els = s.center ? [] : tTargets(s);
+  if(!els.length){
+    spot.classList.add('center'); arrow.hidden = true;
+    card.style.left = Math.round((vw - cw)/2) + 'px'; card.style.top = Math.round((vh - ch)/2) + 'px'; return;
+  }
+  spot.classList.remove('center');
+  const r0 = tRect(els), r = {left:r0.left-PAD, top:r0.top-PAD, right:r0.right+PAD, bottom:r0.bottom+PAD};
+  r.width = r.right - r.left; r.height = r.bottom - r.top;
+  Object.assign(spot.style, {left:r.left+'px', top:r.top+'px', width:r.width+'px', height:r.height+'px'});
+  const cx = r.left + r.width/2, cy = r.top + r.height/2;
+  const clampX = x => Math.max(12, Math.min(vw - cw - 12, x)), clampY = y => Math.max(12, Math.min(vh - ch - 12, y));
+  let side, ax, ay, rot;
+  if(isPhone()){
+    // card docks to the bottom (or top when the target is low on screen); arrow sits between them
+    const dockTop = cy > vh * 0.55;
+    const ctop = dockTop ? 12 : vh - ch - 12;
+    card.style.top = ctop + 'px'; card.style.left = '12px';
+    const ax0 = Math.max(12, Math.min(vw - AS - 12, cx - AS/2));
+    if(!dockTop && ctop - r.bottom > AS + 10){ ax = ax0; ay = r.bottom + 6; rot = 0; }
+    else if(dockTop && r.top - (ctop + ch) > AS + 10){ ax = ax0; ay = r.top - AS - 6; rot = 180; }
+    else if(!dockTop && r.top > AS + 16){ ax = ax0; ay = r.top - AS - 4; rot = 180; }
+    else if(r.bottom + AS + 10 < (dockTop ? vh : ctop)){ ax = ax0; ay = r.bottom + 6; rot = 0; }
+    else { ax = null; }
+  } else {
+    const fits = { below: vh - r.bottom >= ch + GAP + 12, above: r.top >= ch + GAP + 12, right: vw - r.right >= cw + GAP + 12, left: r.left >= cw + GAP + 12 };
+    side = ['below','above','right','left'].find(k => fits[k]);
+    if(side==='below'){ card.style.left = clampX(cx - cw/2)+'px'; card.style.top = (r.bottom + GAP)+'px'; ax = cx - AS/2; ay = r.bottom + 6; rot = 0; }
+    else if(side==='above'){ card.style.left = clampX(cx - cw/2)+'px'; card.style.top = (r.top - GAP - ch)+'px'; ax = cx - AS/2; ay = r.top - AS - 6; rot = 180; }
+    else if(side==='right'){ const vcy = Math.min(Math.max(cy, 80), vh - 80);
+      card.style.left = (r.right + GAP)+'px'; card.style.top = clampY(vcy - ch/2)+'px'; ax = r.right + 6; ay = vcy - AS/2; rot = -90; }
+    else if(side==='left'){ const vcy = Math.min(Math.max(cy, 80), vh - 80);
+      card.style.left = (r.left - GAP - cw)+'px'; card.style.top = clampY(vcy - ch/2)+'px'; ax = r.left - AS - 6; ay = vcy - AS/2; rot = 90; }
+    else { card.style.left = clampX(cx - cw/2)+'px'; card.style.top = (vh - ch - 16)+'px'; ax = cx - AS/2; ay = vh - ch - 16 - AS - 8; rot = 0; }
+  }
+  if(ax == null){ arrow.hidden = true; return; }
+  arrow.hidden = false; arrow.style.left = Math.round(ax)+'px'; arrow.style.top = Math.round(ay)+'px'; arrow.style.setProperty('--rot', rot+'deg');
+}
+function tGo(d){
+  const n = tI + d;
+  if(n < 0) return;
+  if(n >= tSteps.length) return endTour(true);
+  tI = n; showStep();
+}
+$('#tCard').addEventListener('click', e => { const b = e.target.closest('[data-t]'); if(!b) return;
+  if(b.dataset.t==='next') tGo(1); else if(b.dataset.t==='back') tGo(-1); else endTour(false); });
+document.addEventListener('keydown', e => { if(!tOn) return;
+  if(e.key==='ArrowRight' || (e.key==='Enter' && !e.target.closest('.t-skip,.t-back'))){ e.preventDefault(); tGo(1); }
+  else if(e.key==='ArrowLeft'){ e.preventDefault(); tGo(-1); }
+  else if(e.key==='Escape'){ e.preventDefault(); endTour(false); } }, true);
+$('#tour').addEventListener('wheel', e => { if(!isPhone()){ const sc = $('#editorScroll'); if(e.target.closest('.t-card')) return; sc.scrollTop += e.deltaY; } }, {passive:true});
+$('#tourBtn').onclick = startTour;
 
 /* ================= Boot ================= */
 if(!hasData()) seed();
 rerenderAll();
+(function firstVisit(){ let seen = false; try{ seen = localStorage.getItem(TOUR_KEY) === '1'; }catch(_){}
+  if(!seen) setTimeout(startTour, 650); })();
 </script>
 </body>
 </html>
